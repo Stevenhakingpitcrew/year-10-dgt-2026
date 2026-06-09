@@ -1,0 +1,224 @@
+while True:
+
+    # number checker
+    def num_check(question):
+        error = "Please input a number that is more than zero\n"
+        while True:
+            try:
+                response = float(input(question))
+                if response > 0:
+                    return response
+                else:
+                    print(error)
+            except ValueError:
+                print(error)
+#instruction
+    length_aliases = {"mm": "millimeters", "millimeter": "millimeters", "millimetre": "millimeters",
+        "millimetres": "millimeters", "millimeters": "millimeters",
+
+        "cm": "centimeters", "centimetre": "centimeters", "centimetres": "centimeters",
+        "centimeters": "centimeters",
+
+        "m": "meters", "meter": "meters", "metre": "meters", "metres": "meters",
+
+        "km": "kilometres", "kilometer": "kilometres", "kilometers": "kilometres",
+        "kilometre": "kilometres", "kilometres": "kilometres",}
+
+    weight_aliases = {"mg": "milligrams", "milligram": "milligrams", "milligrams": "milligrams",
+        "g": "grams", "gram": "grams", "grams": "grams",
+        "kg": "kilograms", "kilogram": "kilograms", "kilograms": "kilograms",
+        "t": "tonnes", "tonne": "tonnes", "tonnes": "tonnes",
+        "ton": "tonnes", "tons": "tonnes",}
+
+    volume_aliases = {"ml": "milliliters", "millilitre": "milliliters", "millilitres": "milliliters",
+        "milliliter": "milliliters", "milliliters": "milliliters",
+
+        "l": "liters", "litre": "liters", "litres": "liters",
+        "liter": "liters", "liters": "liters",
+
+        "kl": "kiloliters", "kilolitre": "kiloliters", "kilolitres": "kiloliters",
+        "kiloliter": "kiloliters", "kiloliters": "kiloliters",
+
+        "m3": "cubic meters", "m^3": "cubic meters",
+        "cubic meter": "cubic meters", "cubic meters": "cubic meters",
+        "cubic metre": "cubic meters", "cubic metres": "cubic meters",}
+
+    pick = input("type length, time, weight, area/perimeter or volume pick one: ").lower()
+
+    # LENGTH
+    if pick == "length":
+        print("you have selected length")
+        conversions = {"millimeters to centimeters": 1/10,
+            "centimeters to millimeters": 10,
+            "millimeters to meters": 1/1000,
+            "meters to millimeters": 1000,
+            "millimeters to kilometres": 1/1_000_000,
+            "kilometres to millimeters": 1_000_000,
+
+            "centimeters to meters": 1/100,
+            "meters to centimeters": 100,
+            "centimeters to kilometres": 1/100_000,
+            "kilometres to centimeters": 100_000,
+            "meters to kilometres": 1/1000,
+            "kilometres to meters": 1000,}
+
+        raw = input("Type what you want to convert example (mm to m): ").lower()
+        parts = raw.split(" to ")
+
+        if len(parts) != 2:
+            print("Invalid format. Use: unit to unit")
+        else:
+            unit1 = length_aliases.get(parts[0], parts[0])
+            unit2 = length_aliases.get(parts[1], parts[1])
+            choice = f"{unit1} to {unit2}"
+
+            if choice in conversions:
+                amount = num_check("type the number you want converted: ")
+                result = amount * conversions[choice]
+                print(f"{amount} {choice} is {result}")
+            else:
+                print("Invalid conversion type.")
+
+    # TIME
+    if pick == "time":
+        print("you have selected time")
+        conversions = {"seconds to minutes": 1/60,
+            "minutes to seconds": 60,
+            "seconds to hours": 1/3600,
+            "hours to seconds": 3600, 
+            "seconds to days": 1/86400,
+            "days to seconds": 86400,
+            "seconds to weeks": 1/604800,
+            "weeks to seconds": 604800,
+            "seconds to months": 1/2629746,
+            "months to seconds": 2629746,
+            "seconds to years": 1/31536000,
+            "years to seconds": 31536000,
+
+            "minutes to hours": 1/60,
+            "hours to minutes": 60,
+            "minutes to days": 1/1440,
+            "days to minutes": 1440,
+            "minutes to weeks": 1/10080,
+            "weeks to minutes": 10080,
+            "minutes to months": 1/43829,
+            "months to minutes": 43829,
+            "minutes to years": 1/525600,
+            "years to minutes": 525600,
+
+            "hours to days": 1/24,
+            "days to hours": 24,
+            "hours to weeks": 1/168,
+            "weeks to hours": 168,
+            "hours to months": 1/730.5,
+            "months to hours": 730.5,
+            "hours to years": 1/8760,
+            "years to hours": 8760,
+
+            "days to weeks": 1/7,
+            "weeks to days": 7,
+            "days to months": 1/30.44,
+            "months to days": 30.44,
+            "days to years": 1/365,
+            "years to days": 365,
+
+            "weeks to months": 1/4.345,
+            "months to weeks": 4.345,
+            "weeks to years": 1/52.143,
+            "years to weeks": 52.143,
+
+            "months to years": 1/12,
+            "years to months": 12,}
+#input/othert
+        choice = input("Type what you want to convert example (seconds to hours): ").lower()
+        if choice in conversions:
+            amount = num_check("type the number you want converted: ")
+            result = amount * conversions[choice]
+            print(f"{amount} {choice} is {result}")
+        else:
+            print("Invalid conversion type.")
+
+    # WEIGHT
+    if pick == "weight":
+        print("you have selected weight")
+        conversions = {"milligrams to grams": 1/1000,
+            "grams to milligrams": 1000,
+            "milligrams to kilograms": 1/1_000_000,
+            "kilograms to milligrams": 1_000_000,
+            "milligrams to tonnes": 1/1_000_000_000,
+            "tonnes to milligrams": 1_000_000_000,
+
+            "grams to kilograms": 1/1000,
+            "kilograms to grams": 1000,
+            "grams to tonnes": 1/1_000_000,
+            "tonnes to grams": 1_000_000,
+
+            "kilograms to tonnes": 1/1000,
+            "tonnes to kilograms": 1000,}
+
+        raw = input("Type what you want to convert example (g to kg): ").lower()
+        parts = raw.split(" to ")
+
+        if len(parts) != 2:
+            print("Invalid format. Use: unit to unit")
+        else:
+            unit1 = weight_aliases.get(parts[0], parts[0])
+            unit2 = weight_aliases.get(parts[1], parts[1])
+            choice = f"{unit1} to {unit2}"
+
+            if choice in conversions:
+                amount = num_check("type the number you want converted: ")
+                result = amount * conversions[choice]
+                print(f"{amount} {choice} is {result}")
+            else:
+                print("Invalid conversion type.")
+
+    # AREA / PERIMETER
+    if pick == "area/perimeter":
+        width = num_check("width: ")
+        height = num_check("height: ")
+
+        area = height * width
+        perimeter = 2 * (height + width)
+
+        print(f"Perimeter: {perimeter} units")
+        print(f"Area: {area} units")
+
+    # VOLUME
+    if pick == "volume":
+        print("you have selected volume")
+        conversions = {"milliliters to liters": 1/1000,
+            "liters to milliliters": 1000,
+            "milliliters to kiloliters": 1/1_000_000,
+            "kiloliters to milliliters": 1_000_000,
+            "milliliters to cubic meters": 1/1_000_000,
+            "cubic meters to milliliters": 1_000_000,
+
+            "liters to kiloliters": 1/1000,
+            "kiloliters to liters": 1000,
+            "liters to cubic meters": 1/1000,
+            "cubic meters to liters": 1000,
+
+            "kiloliters to cubic meters": 1,
+            "cubic meters to kiloliters": 1,}
+
+        raw = input("Type what you want to convert example (ml to l): ").lower()
+        parts = raw.split(" to ")
+
+        if len(parts) != 2:
+            print("Invalid format. Use: unit to unit")
+        else:
+            unit1 = volume_aliases.get(parts[0], parts[0])
+            unit2 = volume_aliases.get(parts[1], parts[1])
+            choice = f"{unit1} to {unit2}"
+
+            if choice in conversions:
+                amount = num_check("type the number you want converted: ")
+                result = amount * conversions[choice]
+                print(f"{amount} {choice} is {result}")
+            else:
+                print("Invalid conversion type.")
+
+    again = input("Press Enter to use again or type anything to quit    : ")
+    if again != "":
+        break
